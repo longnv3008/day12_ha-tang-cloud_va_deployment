@@ -1,7 +1,7 @@
 # Part 2 Report: Docker Containerization
 
 > **AICB-P1 · VinUniversity 2026**  
-> Họ tên: Nguyễn Hoàng Minh  
+> Họ tên: Ngô Văn Long  
 > Ngày: 17/04/2026
 
 ---

@@ -38,11 +38,11 @@ try:
     _redis = redis.from_url(REDIS_URL, decode_responses=True)
     _redis.ping()
     USE_REDIS = True
-    print("✅ Connected to Redis")
+    print("[OK] Connected to Redis")
 except Exception:
     USE_REDIS = False
     _memory_store: dict = {}
-    print("⚠️  Redis not available — using in-memory store (not scalable!)")
+    print("[WARN] Redis not available -- using in-memory store (not scalable!)")
 
 
 logging.basicConfig(level=logging.INFO)
@@ -93,7 +93,7 @@ def append_to_history(session_id: str, role: str, content: str):
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info(f"Starting instance {INSTANCE_ID}")
-    logger.info(f"Storage: {'Redis ✅' if USE_REDIS else 'In-memory ⚠️'}")
+    logger.info(f"Storage: {'Redis [OK]' if USE_REDIS else 'In-memory [WARN]'}")
     yield
     logger.info(f"Instance {INSTANCE_ID} shutting down")
 

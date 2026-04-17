@@ -1,7 +1,7 @@
 # Part 1 Report: Localhost vs Production
 
 > **AICB-P1 · VinUniversity 2026**  
-> Họ tên: Nguyễn Hoàng Minh  
+> Họ tên: Ngô Văn Long  
 > Ngày: 17/04/2026
 
 ---
