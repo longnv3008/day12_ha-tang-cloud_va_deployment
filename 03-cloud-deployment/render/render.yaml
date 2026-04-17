@@ -14,6 +14,7 @@ services:
     runtime: python
     region: singapore         # Chọn region gần user nhất
     plan: free                # free | starter | standard | pro
+    rootDir: 03-cloud-deployment/railway   # Thư mục chứa app.py + requirements.txt
 
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
