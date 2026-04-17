@@ -58,13 +58,14 @@ async def lifespan(app: FastAPI):
     is_ready = True
     logger.info("Agent is ready to serve requests")
 
-    yield  # App running
-
-    # --- Shutdown ---
-    is_ready = False
-    logger.info("Agent shutting down gracefully — finishing in-flight requests...")
-    time.sleep(0.1)  # Cho request hiện tại hoàn thành
-    logger.info("Shutdown complete")
+    try:
+        yield  # App running
+    finally:
+        # --- Shutdown ---
+        is_ready = False
+        logger.info("Agent shutting down gracefully (lifespan) — finishing in-flight requests...")
+        time.sleep(0.1)  # Cho request hiện tại hoàn thành
+        logger.info("Shutdown complete (lifespan)")
 
 
 app = FastAPI(
@@ -188,9 +189,15 @@ signal.signal(signal.SIGTERM, handle_sigterm)
 
 if __name__ == "__main__":
     logger.info(f"Starting {settings.app_name} on {settings.host}:{settings.port}")
-    uvicorn.run(
-        "app:app" if settings.debug else app,
-        host=settings.host,   # ✅ 0.0.0.0 — nhận kết nối từ bên ngoài container
-        port=settings.port,    # ✅ từ PORT env var
-        reload=settings.debug, # ✅ reload chỉ khi DEBUG=true
-    )
+    try:
+        uvicorn.run(
+            "app:app" if settings.debug else app,
+            host=settings.host,   # ✅ 0.0.0.0 — nhận kết nối từ bên ngoài container
+            port=settings.port,    # ✅ từ PORT env var
+            reload=settings.debug, # ✅ reload chỉ khi DEBUG=true
+        )
+    except KeyboardInterrupt:
+        # ✅ Ẩn Traceback xấu xí trên Windows do Uvicorn ném ra khi nhấn Ctrl+C
+        logger.info("Agent shutting down gracefully (KeyboardInterrupt) — finishing in-flight requests...")
+        time.sleep(0.1)
+        logger.info("Shutdown complete (KeyboardInterrupt)")

@@ -17,12 +17,8 @@ FROM python:3.11-slim AS builder
 
 WORKDIR /app
 
-# Cài build dependencies (cần cho một số packages như numpy)
-RUN apt-get update && apt-get install -y \
-    gcc \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
-
+# Cài build dependencies (chỉ nếu thực sự cần biên dịch)
+# RUN apt-get update && apt-get install -y gcc libpq-dev && rm -rf /var/lib/apt/lists/*
 # Copy và cài requirements
 # Dùng --user để install vào /root/.local (dễ copy sang stage 2)
 COPY 02-docker/production/requirements.txt .

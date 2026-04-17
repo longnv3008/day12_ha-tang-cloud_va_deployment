@@ -1,0 +1,17 @@
+venv/
+.git/
+__pycache__/
+*.pyc
+.env
+
+# Exclude other lab modules
+01-localhost-vs-production/
+03-cloud-deployment/
+04-api-gateway/
+05-scaling-reliability/
+06-lab-complete/
+
+# Documentation and meta
+*.md
+.gitignore
+LICENSE
