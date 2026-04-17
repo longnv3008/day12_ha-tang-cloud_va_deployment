@@ -46,6 +46,7 @@ services:
     name: agent-cache
     plan: free
     maxmemoryPolicy: allkeys-lru
+    ipAllowList: []             # Empty = chỉ internal services truy cập được (bảo mật)
 
 # ============================================================
 # Cách deploy:
