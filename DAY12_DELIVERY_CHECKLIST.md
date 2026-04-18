@@ -1,8 +1,8 @@
 #  Delivery Checklist — Day 12 Lab Submission
 
-> **Student Name:** _________________________  
-> **Student ID:** _________________________  
-> **Date:** _________________________
+> **Student Name:** Ngô Văn Long  
+> **Student ID:** 2A202600129 
+> **Date:** 17/04/2026
 
 ---
 
@@ -144,14 +144,14 @@ curl -X POST https://your-agent.railway.app/ask \
 ##  Pre-Submission Checklist
 
 - [ ] Repository is public (or instructor has access)
-- [ ] `MISSION_ANSWERS.md` completed with all exercises
-- [ ] `DEPLOYMENT.md` has working public URL
-- [ ] All source code in `app/` directory
-- [ ] `README.md` has clear setup instructions
-- [ ] No `.env` file committed (only `.env.example`)
-- [ ] No hardcoded secrets in code
-- [ ] Public URL is accessible and working
-- [ ] Screenshots included in `screenshots/` folder
+- [x] `MISSION_ANSWERS.md` completed with all exercises
+- [x] `DEPLOYMENT.md` has working public URL
+- [x] All source code in `app/` directory
+- [x] `README.md` has clear setup instructions
+- [x] No `.env` file committed (only `.env.example`)
+- [x] No hardcoded secrets in code
+- [x] Public URL is accessible and working
+- [x] Screenshots included in `screenshots/` folder
 - [ ] Repository has clear commit history
 
 ---
@@ -162,20 +162,20 @@ Before submitting, verify your deployment:
 
 ```bash
 # 1. Health check
-curl https://your-app.railway.app/health
+curl https://day12-production-e20f.up.railway.app/health
 
 # 2. Authentication required
-curl https://your-app.railway.app/ask
+curl https://day12-production-e20f.up.railway.app/ask
 # Should return 401
 
 # 3. With API key works
-curl -H "X-API-Key: YOUR_KEY" https://your-app.railway.app/ask \
+curl -H "X-API-Key: YOUR_KEY" https://day12-production-e20f.up.railway.app/ask \
   -X POST -d '{"user_id":"test","question":"Hello"}'
 # Should return 200
 
 # 4. Rate limiting
 for i in {1..15}; do 
-  curl -H "X-API-Key: YOUR_KEY" https://your-app.railway.app/ask \
+  curl -H "X-API-Key: YOUR_KEY" https://day12-production-e20f.up.railway.app/ask \
     -X POST -d '{"user_id":"test","question":"test"}'; 
 done
 # Should eventually return 429
@@ -188,7 +188,7 @@ done
 **Submit your GitHub repository URL:**
 
 ```
-https://github.com/your-username/day12-agent-deployment
+https://github.com/longnv3008/day12_ha-tang-cloud_va_deployment
 ```
 
 **Deadline:** 17/4/2026
